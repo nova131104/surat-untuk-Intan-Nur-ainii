@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Love.exe</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Consolas, monospace;
+}
+
+body{
+    background:#000;
+    color:#00ff66;
+    overflow:hidden;
+}
+
+#terminal{
+    width:100%;
+    height:100vh;
+    padding:30px;
+    white-space:pre-wrap;
+    font-size:18px;
+    overflow-y:auto;
+}
+
+.cursor{
+    display:inline-block;
+    width:10px;
+    height:20px;
+    background:#00ff66;
+    animation:blink .8s infinite;
+}
+
+@keyframes blink{
+    50%{opacity:0;}
+}
+
+#choice{
+    display:none;
+    text-align:center;
+    margin-top:40px;
+}
+
+button{
+    padding:15px 35px;
+    font-size:20px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    margin:20px;
+    transition:.2s;
+}
+
+#yes{
+    background:#00c853;
+    color:white;
+}
+
+#yes:hover{
+    transform:scale(1.1);
+}
+
+#no{
+    background:#d50000;
+    color:white;
+    position:absolute;
+}
+
+#result{
+    display:none;
+    text-align:center;
+    color:white;
+    margin-top:40px;
+    font-size:28px;
+}
+</style>
+</head>
+<body>
+
+<div id="terminal"></div>
+
+<div id="choice">
+    <button id="yes">YES ❤️</button>
+    <button id="no">NO 💔</button>
+</div>
+
+<div id="result">
+    ❤️ YEAYYY!! ❤️<br><br>
+
+    Makasih udah menerima aku.<br>
+    Mulai hari ini semoga kita bisa saling menjaga,<br>
+    saling mendukung, dan membuat banyak kenangan indah bersama. 🌹
+</div>
+
+<script>
+
+const terminal = document.getElementById("terminal");
+
+const text = `
+
+Microsoft Windows [Version 11.0]
+
+C:\\Users\\Me> Love.exe
+
+Initializing Love Engine...
+
+Loading █░░░░░░░░░ 10%
+Loading ███░░░░░░░ 30%
+Loading █████░░░░░ 50%
+Loading ███████░░░ 70%
+Loading █████████░ 90%
+Loading ██████████ 100%
+
+Scanning Database...
+
+Searching Someone Special...
+
+✔ Match Found
+
+========================================
+Nama      : Intan Nur'aini
+Cantik    : 100%
+Lucu      : 100%
+Baik      : 100%
+Senyum    : Unlimited
+========================================
+
+Analyzing...
+
+✔ Selalu bikin semangat.
+✔ Selalu bikin deg-degan.
+✔ Selalu bikin pengen ketemu.
+
+Generating Result...
+
+Aku mungkin bukan orang yang paling sempurna.
+
+Aku juga belum tentu bisa menjadi yang terbaik.
+
+Tapi aku akan selalu berusaha
+menghargai,
+menjaga,
+dan membuatmu tersenyum.
+
+Karena...
+
+Aku benar-benar suka sama kamu.
+
+========================================
+
+QUESTION :
+
+Maukah kamu jadi pacarku?
+
+`;
+
+let i=0;
+
+function typing(){
+
+    if(i<text.length){
+
+        terminal.innerHTML=text.substring(0,i)+"<span class='cursor'></span>";
+
+        terminal.scrollTop=terminal.scrollHeight;
+
+        i++;
+
+        setTimeout(typing,18);
+
+    }else{
+
+        document.querySelector(".cursor").remove();
+
+        document.getElementById("choice").style.display="block";
+
+        randomNo();
+    }
+
+}
+
+typing();
+
+const no=document.getElementById("no");
+
+function randomNo(){
+
+    no.style.left=Math.random()*(window.innerWidth-140)+"px";
+    no.style.top=Math.random()*(window.innerHeight-80)+"px";
+
+}
+
+no.addEventListener("mouseenter",randomNo);
+no.addEventListener("mouseover",randomNo);
+no.addEventListener("click",randomNo);
+
+document.getElementById("yes").onclick=function(){
+
+    document.getElementById("choice").style.display="none";
+    document.getElementById("result").style.display="block";
+
+    document.body.style.background="#111";
+
+}
+
+</script>
+
+</body>
+</html>
